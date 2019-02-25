@@ -1,0 +1,19 @@
+.container {
+  padding: 10px;
+  margin: 10px;
+  width: initial;
+}
+
+.question-container {
+  padding: 15px;
+}
+
+.decorate-border-right {
+  height: -webkit-fill-available;
+  border-right: 1px solid lightgray;
+}
+.active {
+  background: #f5ebeb;
+  padding: 15px;
+  border: 1px solid lemonchiffon;
+}

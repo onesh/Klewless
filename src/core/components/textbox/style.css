@@ -1,0 +1,26 @@
+.core_textbox {
+  border: none;
+  border-bottom: 1px solid lightgray;
+  margin-right: 2px;
+}
+
+.core_textbox:hover {
+  border: 1px solid lightgray;
+}
+
+.core_textbox_error {
+  border: 1px solid red;
+  /* font-family: monospace; */
+  margin-right: 2px;
+  /* font-size: x-small; */
+  display: block;
+}
+
+.core_textbox_parent_right {
+  display: table;
+  float: right;
+}
+
+.core_textbox_parent {
+  /* display: table; */
+}
