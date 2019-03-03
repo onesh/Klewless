@@ -54,7 +54,7 @@ class Question {
             });
           }
         });
-      }
+      } 
     });
   }
 
@@ -69,7 +69,7 @@ class Question {
           message: `${"Error couldn't update question with id " +
             question._id}`,
           success: false,
-          error: error
+          error: error            
         });
       } else {
         question.lastUpdatedBy = req.user._id;
@@ -82,7 +82,9 @@ class Question {
             res.status(401).send({
               message: `${"Error couldn't update question, probably you did not fill anyone of the fields"}`,
               success: false,
-              error: error
+              error: error,
+              value: error.errors.store.value
+
             });
             console.log("----", error, "----");
           } else {
