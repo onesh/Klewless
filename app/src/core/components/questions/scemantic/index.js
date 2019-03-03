@@ -29,7 +29,7 @@ export default class ScemanticQuestion extends React.Component {
     const { isLoading, addOption, removeOption} = this.props.store;
     const { classes, deletequestion, saveQuestion } = this.props;
     const { name, options, question } = this.props.store.store.model;
-    const { editable } = this.props.store.store;
+    const { editable, showEditToggle } = this.props.store.store;
 
     const id = this.props.store.question._id;
 
@@ -40,12 +40,14 @@ export default class ScemanticQuestion extends React.Component {
 
           <Grid container spacing={10}>
 
-
-
-            <Grid item xs={4} md={4}>
+          {
+            showEditToggle ? ( <Grid item xs={4} md={4}>
                 Edit mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={editable ? 'checked' : ''} value={editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
                 Priview mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={!editable ? 'checked' : ''} value={!editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
-            </Grid>
+            </Grid>) : (<span/>)
+          }
+
+           
 
             <Grid item xs={8} md={8}>
               <div>

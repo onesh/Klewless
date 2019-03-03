@@ -6,10 +6,14 @@ class Model {
     if (store) {
       this.editable = store.store.editable;
       this.model = store.store.model;
+      this.showEditToggle = store.store.showEditToggle;
+
+
     }
 
     else {
       this.editable = true;
+      this.showEditToggle = true;
       this.model = {
 
         name: 'ScemanticQuestion',

@@ -1,17 +1,14 @@
-import  schema  from './schema'
+import AssembleDataAndBehaviour from "./AssembleDataAndBehaviour";
 
  class Model {
   constructor() {
-    this.schema = {};
   };
-
-  createStore (store) {
-    this.schema  = new schema(store);
-    return this.schema;
-  };
+  createStore(store) {
+    return new AssembleDataAndBehaviour(store);
+  }
 
   getSchema() {
-    return this.schema;
+    return new AssembleDataAndBehaviour();
   }
 
 }

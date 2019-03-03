@@ -21,7 +21,7 @@ class Api {
     return this.header[key];
   }
   enqueueRequest (req) {
-    if (this.requestQueue.length == 1) loader.showLoader();
+    if (this.requestQueue.length == 0) loader.showLoader();
    this.requestQueue.push(req);
   }
   dequeueRequest (req) {

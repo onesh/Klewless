@@ -26,7 +26,6 @@ export default class FrankQuestion extends React.Component {
   render() {
     const { classes, deletequestion, saveQuestion } = this.props;
     const { editable, showEditToggle } = this.props.store.store;
-    debugger;
     const { question, options } = this.props.store.store.model;
     const { addOption, removeOption } = this.props.store;
     const id = this.props.store.question._id;

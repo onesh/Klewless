@@ -21,7 +21,6 @@ class GiveTest {
       .loadTest(testID)
       .then(questions => {
         this.test.questions = questions;
-        debugger;
         this.isTestLoaded = true;
       })
       .catch(err => {

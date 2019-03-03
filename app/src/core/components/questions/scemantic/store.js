@@ -21,13 +21,11 @@ class ScemanticQuestionStore {
     return modelInstance.createStore(store);
   }
 
-  @action
   addOption(context, e, store) {
     this[this.length] = modelInstance.getSchema().newOption();
     context.forceUpdate();
   }
 
-  @action
   removeOption(context) {
     delete this.pop();
     context.forceUpdate();

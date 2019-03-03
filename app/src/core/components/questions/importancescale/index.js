@@ -28,7 +28,7 @@ export default class ImportanceScale extends React.Component {
     const { classes, deletequestion, saveQuestion } = this.props;
     const { question } = this.props.store.store.model;
     const id = this.props.store.question._id;
-    const { editable } = this.props.store.store;
+    const { editable, showEditToggle } = this.props.store.store;
 
     return (
       <Card style={{ margin: 10}}>
@@ -38,12 +38,14 @@ export default class ImportanceScale extends React.Component {
           <Grid container spacing={10}>
 
 
-
-            <Grid item xs={4} md={4}>
+        {showEditToggle ? (
+          <Grid item xs={4} md={4}>
 
             Edit mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={editable ? 'checked' : ''} value={editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
             Priview mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={!editable ? 'checked' : ''} value={!editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
         </Grid>
+          ) : (<span/>)}
+        
 
 
 

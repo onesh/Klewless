@@ -28,7 +28,7 @@ export default class DichotomousQuestion extends React.Component {
   render() {
     const id = this.props.store.question._id;
     const { classes, deletequestion, saveQuestion } = this.props;
-    const { editable } = this.props.store.store;
+    const { editable, showEditToggle } = this.props.store.store;
     const { question, name, options } = this.props.store.store.model;
     console.log(question, name, options);
 
@@ -41,13 +41,12 @@ export default class DichotomousQuestion extends React.Component {
 
           <Grid container spacing={10}>
 
-
-            <Grid item xs={4} md={4}>
-
-
-              Edit mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={editable ? 'checked' : ''} value={editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
+{showEditToggle ? (
+        <Grid item xs={4} md={4}>
+            Edit mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={editable ? 'checked' : ''} value={editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
             Priview mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={!editable ? 'checked' : ''} value={!editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
-        </Grid>
+        </Grid>) : (<span/>)}
+        
 
 
         <br/>

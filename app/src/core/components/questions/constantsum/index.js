@@ -27,7 +27,7 @@ export default class ConstantSum extends React.Component {
 
   render() {
     const { classes, deletequestion, saveQuestion } = this.props;
-    const { editable } = this.props.store.store;
+    const { editable, showEditToggle } = this.props.store.store;
     const{  question, options } = this.props.store.store.model;
     const { setTotal, total, setValue, addOption, removeOption } = this.props.store;
     const id = this.props.store.question._id;
@@ -39,12 +39,14 @@ return (
         <div class={'question-container'}>
 
           <Grid container spacing={10}>
-
-            <Grid item xs={4} md={4}>
-
+{
+  showEditToggle ? (
+        <Grid item xs={4} md={4}>
               Edit mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={editable ? 'checked' : ''} value={editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
             Priview mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={!editable ? 'checked' : ''} value={!editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
-        </Grid>
+        </Grid>) : (<span/>)
+}
+        
 
         <br/>
         <br/>

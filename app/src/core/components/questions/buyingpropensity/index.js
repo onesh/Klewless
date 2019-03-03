@@ -26,7 +26,7 @@ export default class BuyingPropensity extends React.Component {
 
   render() {
     const { classes, deletequestion, saveQuestion } = this.props;
-    const { editable } = this.props.store.store;
+    const { editable, showEditToggle } = this.props.store.store;
     const { isLoading, logPropensity, propensity} = this.props.store
     const{  question, options, name } = this.props.store.store.model;
     const id = this.props.store.question._id;
@@ -37,23 +37,16 @@ export default class BuyingPropensity extends React.Component {
       <Card style={{ margin: 10}}>
         <div class={'question-container'}>
           <Grid container spacing={10}>
-            <Grid item xs={4} md={4}>
+        {
+          showEditToggle ? (
+        <Grid item xs={4} md={4}>
               Edit mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={editable ? 'checked' : ''} value={editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
             Priview mode<input type={'radio'} name={'edit_priview_' + id} style={{cursor: 'pointer'}} checked={!editable ? 'checked' : ''} value={!editable} onClick={this.editModeToggler.bind(this, this.props.store.store)} title={'delete question'} color="primary" />
-        </Grid>
+        </Grid>) : (<span />)
+        }
+       
         <br/> <br/>
-        <Grid item xs={8} md={8}>
-          <div>
-            {
-
-              editable ? (
-                <span>
-                  <Button style={{cursor: 'pointer'}} onClick={this.popQuestion.bind(this, id)} title={'delete question'} color="primary">Delete Question</Button>
-                </span> ) : null
-              }
-
-            </div>
-          </Grid>
+ 
         </Grid>        <div>
         <Textbox block={true}
           model={question}

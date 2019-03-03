@@ -8,9 +8,12 @@ class GiveTestModel {
     return api
       .getData("getTest/" + testID + "/true", {}, {}, "get")
       .then(data => {
-        let stores = data.stores.map(store => {
-          return questionBuilder.getStore(store.store.model.name, store);
-        });
+        // only show valid questions in the execution
+        let stores = data.stores.filter(store => store.isused);
+        return Promise.resolve(stores);
+      }).
+      then (stores =>  {
+        stores = stores.map(store => questionBuilder.getStore(store.store.model.name, store) )
         return Promise.resolve(stores);
       })
       .then(stores => {

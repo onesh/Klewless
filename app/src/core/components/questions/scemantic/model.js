@@ -2,7 +2,6 @@ import AssembleDataAndBehaviour from "./AssembleDataAndBehaviour";
 
 class Model {
   constructor() {
-    this.schema = {};
   }
 
   createStore(store) {
@@ -10,7 +9,7 @@ class Model {
   }
 
   getSchema() {
-    return AssembleDataAndBehaviour;
+    return new AssembleDataAndBehaviour();
   }
 }
 
