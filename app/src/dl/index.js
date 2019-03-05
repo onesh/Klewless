@@ -1,6 +1,6 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { Card, Button, Grid, Modal } from "@material-ui/core";
+import { Card, Button, Grid, Modal, Paper, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Header from "../app.header";
 import Style from "./style.css";
@@ -53,7 +53,7 @@ class DL extends React.Component {
           <Header />
           <div>
             <Grid container>
-              <Grid className={"decorate-border-right"} item xs={12} md={3}>
+              <Grid item xs={12} md={3}>
                 <div>
                   <Button onClick={createDl.bind(this.props.DL)}>
                     Create DL
@@ -61,7 +61,7 @@ class DL extends React.Component {
                 </div>
                 {dl.length > 0 ? (
                   dl.map((dl, index) => (
-                    <div
+                    <Paper
                       onClick={setActiveIndexAndReadDl.bind(
                         that,
                         readDl,
@@ -69,13 +69,14 @@ class DL extends React.Component {
                         dl._id,
                         index
                       )}
+                      style={{padding: 10, marginBottom: 10}}
                     >
                       <Grid
                         container
                         className={
                           activeDl && activeDl._id == dl._id
                             ? "active"
-                            : "testwrapper"
+                            : "none"
                         }
                       >
                         <Grid item xs={8} md={8}>
@@ -93,14 +94,14 @@ class DL extends React.Component {
                         </Grid>
                       </Grid>
                       <br />
-                    </div>
+                    </Paper>
                   ))
                 ) : (
                   <p>No DL list to populate</p>
                 )}
               </Grid>
               {activeDl && activeDl._id ? (
-                <div>
+                <div style={{marginLeft: 40}}>
                   <div>
                     <Button onClick={setMode.bind(this.props.DL, "copypaste")}>
                       Copy-paste values
@@ -111,15 +112,13 @@ class DL extends React.Component {
                   </div>
                   <div>
                     <Grid item xs={12} md={12}>
-                      <label>
-                        Name
-                        <input
-                          onChange={this.setDlName.bind(this, activeDl)}
-                          name="dl_name"
-                          type="textarea"
-                          value={activeDl.name}
-                        />
-                      </label>
+                     <TextField
+                        id="dl-selected-dl-name"
+                        label="Name"
+                        value={activeDl.name}
+                        onChange={this.setDlName.bind(this, activeDl)}
+                        margin="normal"
+                      />
                     </Grid>
                     {mode == "upload" ? (
                       <div>
@@ -128,18 +127,15 @@ class DL extends React.Component {
                     ) : (
                       <Grid item xs={12} md={9}>
                         <Grid item xs={12} md={12}>
-                          <label for="dl_values">
-                            Values
-                            <textarea
-                              rows="4"
-                              cols="50"
-                              onChange={this.setDlValues.bind(this, activeDl)}
-                              rows="20"
-                              name="dl_values"
-                              type="textarea"
-                              value={activeDl.values}
-                            />
-                          </label>
+                           <TextField
+                            id="dl-selected-values"
+                            label="Email(s)"
+                            multiline
+                            value={activeDl.values}
+                            onChange={this.setDlValues.bind(this, activeDl)}
+                            margin="normal"
+                            style={{width: 400}}
+                            />    
                         </Grid>
                       </Grid>
                     )}

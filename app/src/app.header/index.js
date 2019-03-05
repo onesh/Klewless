@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { inject, observer } from "mobx-react";
+import { RecordVoiceOver } from '@material-ui/icons';
+
 import {
   AppBar,
   Grid,
@@ -28,7 +30,7 @@ class Header extends React.Component {
               <Toolbar>
                 <Grid item xs={6} md={6}>
                   <Typography variant="title" color="inherit">
-                    Voiceoc
+                    <RecordVoiceOver/> Voiceoc
                   </Typography>
                 </Grid>
                 <Grid item xs={0} md={4} />

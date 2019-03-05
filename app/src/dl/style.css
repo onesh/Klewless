@@ -13,7 +13,7 @@
   border-right: 1px solid lightgray;
 }
 .active {
-  background: #f5ebeb;
   padding: 15px;
-  border: 1px solid lemonchiffon;
+  color: red;
 }
+

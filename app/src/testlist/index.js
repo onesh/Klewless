@@ -9,7 +9,8 @@ import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Avatar from "@material-ui/core/Avatar";
+import { NoteAdd, Settings, Schedule, Event, Link as TestLink, Update, Create, Face,HowToVote, FilterNone, FlashOn, FlashOff, Share, Edit, Delete } from '@material-ui/icons';
+
 
 const styles = theme => ({
   root: {
@@ -60,33 +61,40 @@ class TestList extends React.Component {
                     color="primary"
                     onClick={createTest.bind(this.props.TestList)}
                   >
+                  <NoteAdd></NoteAdd>
                     New Survey
                   </Button>
-                  <Link color="primary" color="primary" to={"/dl/"}>
+                  <Button
+                  color="primary" 
+                  onClick={() => {window.location = "/dl/"} }>
+                    <Settings></Settings>
                     Manage DL
-                  </Link>
+                  </Button>
                 </div>
                 <div>
                   {testlist.map((test, index) => {
                     return (
-                      <div>
-                        <div className={"testwrapper"}>
+                      <div style={{padding: 15}}>
+                        <Paper>
                           <List>
                             <Grid container spacing={10}>
                               <Grid item md={4}>
                                 <ListItem>
+                                {(test.meta.active) ? (<FlashOn/>) : (<FlashOff/>)}
                                   <ListItemText
                                     primary="Active"
                                     secondary={test.meta.active + ""}
                                   />
                                 </ListItem>
                                 <ListItem>
+                                <Event></Event>
                                   <ListItemText
                                     primary="Auto publish"
                                     secondary={test.meta.autoPublish + ""}
                                   />
                                 </ListItem>
                                 <ListItem>
+                                  <Create/>
                                   <ListItemText
                                     primary="Created"
                                     secondary={new Date(
@@ -97,18 +105,21 @@ class TestList extends React.Component {
                               </Grid>
                               <Grid item md={4}>
                                 <ListItem>
+                                <HowToVote/>
                                   <ListItemText
                                     primary="Response count"
                                     secondary={test.responseCount}
                                   />
                                 </ListItem>
                                 <ListItem>
+                                <FilterNone/>
                                   <ListItemText
                                     primary="Question count"
                                     secondary={test.stores.length}
                                   />
                                 </ListItem>
                                 <ListItem>
+                                <Schedule></Schedule>
                                   <ListItemText
                                     primary="Duration"
                                     secondary={test.meta.duration}
@@ -117,12 +128,14 @@ class TestList extends React.Component {
                               </Grid>
                               <Grid item md={4}>
                                 <ListItem>
+                                <TestLink/>
                                   <ListItemText
                                     primary="TestLink"
                                     secondary={test.testLink}
                                   />
                                 </ListItem>
                                 <ListItem>
+                                <Face/>
                                   <ListItemText
                                     primary="Last updated by"
                                     secondary={test.user.email}
@@ -131,7 +144,8 @@ class TestList extends React.Component {
                               </Grid>
                             </Grid>
                           </List>
-                          <Button
+                          <Paper style={{padding: 15}}>
+                                                      <Button
                             href="#"
                             onClick={setSharingComponent.bind(
                               this.props.TestList,
@@ -139,7 +153,7 @@ class TestList extends React.Component {
                               test
                             )}
                           >
-                            share test
+                            <Share/> share
                           </Button>
                           &nbsp;
                           <Button
@@ -153,10 +167,13 @@ class TestList extends React.Component {
                               to={"/createtest/" + test._id}
                               style={{ "text-decoration": "none" }}
                             >
-                              Edit Test
+                              <Edit/> Edit
                             </Link>
                           </Button>
-                        </div>
+                          <Button><Delete/>Delete</Button>
+
+                          </Paper>
+                        </Paper>
 
                         <div className={"sharing-component-holder"}>
                           {index == componentToBeShared ? (
